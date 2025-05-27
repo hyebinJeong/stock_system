@@ -21,5 +21,5 @@ public interface StockDao {
     int delete(int id) throws SQLException;
 
     // close 종료
-    void close() throws SQLException;
+    // void close() throws SQLException;
 }
