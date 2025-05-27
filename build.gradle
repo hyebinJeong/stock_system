@@ -10,6 +10,18 @@ repositories {
 }
 
 dependencies {
+    // MYSQL 데이터베이스에 연결하기 위한 JDBC 의존성
+    implementation "com.mysql:mysql-connector-j:8.3.0"
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // 테스트 코드에서도 lombok을 사용할 수 있도록 별도 설정
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // Junit5 테스트 플랫폼 BOM 지정해 버전 충돌 방지
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
