@@ -20,6 +20,4 @@ public interface StockDao {
     // 주식 삭제
     int delete(int id) throws SQLException;
 
-    // close 종료
-    // void close() throws SQLException;
 }
