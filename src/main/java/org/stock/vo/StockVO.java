@@ -1,4 +1,4 @@
-package org.stock.model;
+package org.stock.vo;
 
 // VO (Value Object) 클래스: DB 테이블의 하나의 행을 표현하는 객체
 public class StockVO {

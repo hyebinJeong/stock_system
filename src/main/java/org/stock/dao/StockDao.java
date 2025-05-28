@@ -1,6 +1,6 @@
 package org.stock.dao;
 
-import org.stock.model.StockVO;
+import org.stock.vo.StockVO;
 import java.util.List;
 
 // DAO (Data Access Object) 인터페이스: DB 연동을 위한 메서드 정의
