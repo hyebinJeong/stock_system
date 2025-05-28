@@ -8,9 +8,7 @@ import java.util.List;
 public interface StockDao {
 
     // 주식 등록
-    static int create(StockVO stock) throws SQLException {
-        return 0;
-    }
+    int create(StockVO stock) throws SQLException;
 
     // 주식 목록 조회
     List<StockVO> getList() throws SQLException;

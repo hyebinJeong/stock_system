@@ -1,6 +1,7 @@
 package org.stock.common;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -17,6 +18,7 @@ public class JDBCUtil {
             String id = properties.getProperty("id");
             String password = properties.getProperty("password");
             Class.forName(driver);
+            conn = DriverManager.getConnection(url, id, password); // 실제 연결 수행
         } catch (Exception e) {
             e.printStackTrace();
         }
