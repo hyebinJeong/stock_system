@@ -1,4 +1,4 @@
-package org.stock.main;
+package org.stock;
 
 import org.stock.dao.StockDao;
 import org.stock.dao.StockDaoImpl;
