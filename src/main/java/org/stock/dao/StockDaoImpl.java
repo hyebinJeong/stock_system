@@ -7,19 +7,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+// import java.util.ArrayList;
+// import java.util.List;
 
 public class StockDaoImpl implements StockDao {
 
     Connection conn = JDBCUtil.getConnection();
 
+    /*
     private final String STOCK_LIST = "SELECT * FROM stocks";
     private final String STOCK_GET = "SELECT * FROM stocks WHERE ticker = ?";
     private final String STOCK_INSERT = "INSERT INTO stocks VALUES (?, ?, ?, ?)";
     private final String STOCK_UPDATE = "UPDATE stocks SET stock_name = ?, price = ?, holding_qty = ? WHERE ticker = ?";
+    */
     private final String STOCK_DELETE = "DELETE FROM stocks WHERE ticker = ?";
 
+    /*
     @Override
     public int create(StockVO stock) throws SQLException {
         PreparedStatement pstmt = conn.prepareStatement(STOCK_INSERT);
@@ -82,6 +85,7 @@ public class StockDaoImpl implements StockDao {
         pstmt.close();
         return count;
     }
+    */
 
     @Override
     public int delete(String ticker) throws SQLException {
