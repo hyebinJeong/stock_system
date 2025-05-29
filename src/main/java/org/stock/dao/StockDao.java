@@ -19,4 +19,5 @@ public interface StockDao {
 
     // 주식 삭제
     int delete(String ticker) throws SQLException;
+
 }
