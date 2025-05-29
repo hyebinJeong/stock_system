@@ -12,12 +12,11 @@ public interface StockDao {
     List<StockVO> getList() throws SQLException;
 
     // 주식 정보 조회
-    StockVO get(int id) throws  SQLException;
+    StockVO get(String ticker) throws  SQLException;
 
     // 주식 정보 수정
     int update(StockVO stock) throws SQLException;
 
     // 주식 삭제
-    int delete(int id) throws SQLException;
-
+    int delete(String ticker) throws SQLException;
 }
