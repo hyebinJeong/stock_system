@@ -17,77 +17,35 @@ public class StockMain {
 
     public static void main(String[] args) throws SQLException {
         while (true) {
-            System.out.println("원하는 작업을 선택하시오.");
+            System.out.println("\n원하는 작업을 선택하시오.");
             System.out.println("=====================");
-            System.out.println("1. insert");
-            System.out.println("2. selectList");
-            System.out.println("3. selectOne");
-            System.out.println("4. update");
-            System.out.println("5. delete");
-            System.out.println("6. exit");
+            System.out.println("1. 주식 등록 (insert)");
+            System.out.println("2. 주식 목록 조회 (selectList)");
+            System.out.println("3. 주식 단일 조회 (selectOne)");
+            System.out.println("4. 주식 정보 수정 (update)");
+            System.out.println("5. 주식 삭제 (delete)");
+            System.out.println("6. 프로그램 종료");
             System.out.println("=====================");
-            System.out.print("번호 입력>> ");
-
-            // 사용자로부터 번호 입력 받기
+            System.out.print("번호 입력 >> ");
             int choice = sc.nextInt();
-            if (choice == 1) {
-                insert();
-            } else if (choice == 2) {
-                selectList();
-            } else if (choice == 3){
-                selectOne();
-            } else if (choice == 4) {
-                update();
-            } else if(choice == 5){
-                delete();
-            }else if (choice == 6) {
-                JDBCUtil.close();
-                System.out.println("프로그램을 종료합니다.");
-                System.exit(0); //프로그램 종료
-            } else {
-                System.out.println("선택이 올바르지 않음.");
+          
+            switch (choice) {
+                case 1 -> insert();
+                case 2 -> selectList();
+                case 3 -> selectOne();
+                case 4 -> update();
+                case 5 -> delete();
+                case 6 -> {
+                    JDBCUtil.close();  // 연결 종료
+                    System.out.println("프로그램을 종료합니다.");
+                    System.exit(0);     // 프로그램 종료
+                }
+                default -> System.out.println("선택이 올바르지 않습니다.");
             }
         }
     }
-
-    private static void printVO(StockVO stockVO) {
-        System.out.println("주식명 : " + stockVO.getStockName() + ", 종목 코드 : " + stockVO.getTicker() + ", 현재가 : " + stockVO.getPrice() + ", 보유 수량 : " + stockVO.getHoldingQty());
-    }
-
-    // 주식 정보 입력 메서드
-    public static void insert() throws SQLException {
-        System.out.println("주식 이름 입력");
-        String stockName = sc.next();
-        System.out.println("종목 코드 입력");
-        String ticker = sc.next();
-        System.out.println("현재가 입력");
-        Integer price = sc.nextInt();
-        System.out.println("보유 수량 입력");
-        Integer holdingQty = sc.nextInt();
-
-        // 입력값으로 StockVO 객체 생성
-        StockVO stock = new StockVO();
-        stock.setStockName(stockName);
-        stock.setTicker(ticker);
-        stock.setPrice(price);
-        stock.setHoldingQty(holdingQty);
-
-        // DAO를 통해 db에 주식 정보 저장
-        int result = stockDao.create(stock);
-        // 결과 출력
-        if (result > 0) System.out.println("주식 등록 성공");
-        else System.out.println("주식 등록 실패");
-    }
-
-    // 전체 주식 목록 출력 메서드
-    public static void selectList() throws SQLException{
-        System.out.println("주식 목록 조회");
-        // 모든 주식 정보 가져와서 출력
-        for(StockVO stock : stockDao.getList()){
-            printVO(stock);
-        }
-    }
-
+  
+  
     // 특정 주식 조회
     public static void selectOne() throws SQLException {
         System.out.println("조회할 종목 코드");
@@ -143,19 +101,10 @@ public class StockMain {
         }
     }
 
-    // 주식 삭제 메서드
-    public static void delete() throws SQLException{
-        System.out.println("삭제할 종목 코드 (ticker) : ");
+    // 주식 삭제 메서드 
+    public static void delete() throws SQLException {
+        System.out.print("삭제할 종목 코드 (ticker) :  ");
         String ticker = sc.next();
-
-        StockVO stock = stockDao.get(ticker);
-
-        if(stock.getTicker() == null){
-            System.out.println("해당 종목이 존재하지 않습니다.");
-            return;
-        }
-
-        printVO(stock);
 
         System.out.println("정말 삭제하시겠습니까? (y/n) : ");
         String confirm = sc.next();
@@ -171,5 +120,22 @@ public class StockMain {
             System.out.println("삭제 취소됨.");
         }
     }
-
+  
+  
+// prinVo 주석 (1)
+  
+//     private static void printVO(StockVO stockVO) {
+//       System.out.println("주식명 : " + stockVO.getStockName() + ", 종목 코드 : " + stockVO.getTicker() + ", 현재가 : " + stockVO.getPrice() + ", 보유 수량 : " + stockVO.getHoldingQty());
+//     }
+  
+ 
+// prinVo 주석 (2)
+    /*
+    private static void printVO(StockVO stock) {
+        System.out.println("종목명: " + stock.getStockName()
+                + ", 티커: " + stock.getTicker()
+                + ", 가격: " + stock.getPrice()
+                + ", 보유 수량: " + stock.getHoldingQty());
+    }
+    */
 }
