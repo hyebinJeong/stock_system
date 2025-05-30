@@ -1,54 +1,17 @@
 package org.stock.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class StockVO {
-    private String stockName;
+    private int id;
+    private String stock_name;
     private String ticker;
     private int price;
-    private int holdingQty;
+    private int holding_qty;
 
-    public StockVO() {}
-
-    public StockVO(String stockName, String ticker, int price, int holdingQty) {
-        this.stockName = stockName;
-        this.ticker = ticker;
-        this.price = price;
-        this.holdingQty = holdingQty;
-    }
-
-    public String getStockName() {
-        return stockName;
-    }
-
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
-    }
-
-    public String getTicker() {
-        return ticker;
-    }
-
-    public void setTicker(String ticker) {
-        this.ticker = ticker;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getHoldingQty() {
-        return holdingQty;
-    }
-
-    public void setHoldingQty(int holdingQty) {
-        this.holdingQty = holdingQty;
-    }
-
-    @Override
-    public String toString() {
-        return "[" + stockName + ", " + ticker + ", " + price + ", " + holdingQty + "]";
-    }
 }
