@@ -5,13 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor //기본 생성자 생성
-@AllArgsConstructor // 모든 필드를 매개변수로 받는 생성자 생성
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class StockVO {
     private int id;
-    private String stockName;
+    private String stock_name;
     private String ticker;
     private int price;
-    private int holdingQty;
+    private int holding_qty;
+
 }
