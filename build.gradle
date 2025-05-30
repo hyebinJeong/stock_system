@@ -10,18 +10,19 @@ repositories {
 }
 
 dependencies {
-    // MySQL 데이터베이스에 연결하기 위한 JDBC 드라이버 의존성 (런타임에 필요)
-    implementation 'com.mysql:mysql-connector-j:8.3.0'
-    // lombok: 컴파일 시에만 필요한 어노테이션 처리기 (getter/setter 자동 생성 등)
-    // 실제 실행 시에는 포함되지 않음
+    // MYSQL 데이터베이스에 연결하기 위한 JDBC 의존성
+    implementation "com.mysql:mysql-connector-j:8.3.0"
+
+    // lombok
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
     // 테스트 코드에서도 lombok을 사용할 수 있도록 별도 설정
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
-    // JUnit5 테스트 플랫폼 BOM (Bill of Materials)을 지정해 JUnit 관련 버전 충돌 방지
+
+    // Junit5 테스트 플랫폼 BOM 지정해 버전 충돌 방지
     testImplementation platform('org.junit:junit-bom:5.10.0')
-    // JUnit5의 Jupiter API를 사용한 단위 테스트 지원
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
