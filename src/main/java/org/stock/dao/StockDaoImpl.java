@@ -20,7 +20,7 @@ public class StockDaoImpl implements StockDao{
     private String STOCK_GET = "select * from stock_db where ticker = ?";
     private String STOCK_INSERT = "insert into stock_db (stock_name, ticker, price, holding_qty) values(?,?,?,?)";
     private String STOCK_UPDATE = "update stock_db set stock_name  = ?, ticker = ?, price = ?, holding_qty = ? where id = ?";
-    private String STOCK_DELETE = "DELETE FROM stock_db WHERE ticker = ?";
+    private String STOCK_DELETE = "delete from stock_db where ticker = ?";
 
     // 주식 등록
     @Override
