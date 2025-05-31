@@ -1,24 +1,25 @@
 package org.stock.dao;
 
-import org.stock.vo.StockVO;
-import java.util.List;
+import org.stock.domain.StockVO;
 
-// DAO (Data Access Object) 인터페이스: DB 연동을 위한 메서드 정의
+import java.sql.SQLException;
+
 public interface StockDao {
-    // 전체 주식 목록을 조회
-    List<StockVO> getAllStocks();
 
-    // ID로 특정 주식 정보 조회
-    StockVO getStockById(int id);
+    // 주식 등록
+    int create(StockVO stock) throws SQLException;
 
-    /*
-    // 주식 정보 삽입
-    void insertStock(StockVO stock);
+    // 주식 목록 조회
+    List<StockVO> getAllStocks() throws SQLException;
+//    List<StockVO> getList() throws SQLException;
+
+    // 주식 정보 조회
+    StockVO get(String ticker) throws  SQLException;
 
     // 주식 정보 수정
-    void updateStock(StockVO stock);
+    int update(StockVO stock) throws SQLException;
 
-    // 주식 정보 삭제
-    void deleteStock(int id);
-    */
+    // 주식 삭제
+    int delete(String ticker) throws SQLException;
 }
+
