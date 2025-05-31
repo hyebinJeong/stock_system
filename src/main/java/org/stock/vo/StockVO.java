@@ -11,7 +11,8 @@ public class StockVO {
     // 기본 생성자
     public StockVO() {}
 
-    // 모든 필드를 초기화하는 생성자
+    // 모든 필드를 초기화하는 생성자 (Read 기능에만 사용)
+    /*
     public StockVO(int id, String stockName, String ticker, int price, int holdingQty) {
         this.id = id;
         this.stockName = stockName;
@@ -19,49 +20,53 @@ public class StockVO {
         this.price = price;
         this.holdingQty = holdingQty;
     }
+    */
 
-    // 각 필드에 대한 getter 및 setter
+    // 각 필드에 대한 getter (Read 기능)
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getStockName() {
         return stockName;
     }
 
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
-    }
-
     public String getTicker() {
         return ticker;
-    }
-
-    public void setTicker(String ticker) {
-        this.ticker = ticker;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public int getHoldingQty() {
         return holdingQty;
+    }
+
+    // setter 메서드들은 주석 처리
+    /*
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setStockName(String stockName) {
+        this.stockName = stockName;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public void setHoldingQty(int holdingQty) {
         this.holdingQty = holdingQty;
     }
+    */
 
-    // 객체 정보를 문자열로 출력할 때 사용
+    // 객체 정보를 문자열로 출력할 때 사용 (Read)
     @Override
     public String toString() {
         return "StockVO{" +

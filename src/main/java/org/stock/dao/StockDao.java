@@ -11,6 +11,7 @@ public interface StockDao {
     // ID로 특정 주식 정보 조회
     StockVO getStockById(int id);
 
+    /*
     // 주식 정보 삽입
     void insertStock(StockVO stock);
 
@@ -19,4 +20,5 @@ public interface StockDao {
 
     // 주식 정보 삭제
     void deleteStock(int id);
+    */
 }

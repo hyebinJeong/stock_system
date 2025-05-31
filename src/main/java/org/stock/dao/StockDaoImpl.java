@@ -61,6 +61,7 @@ public class StockDaoImpl implements StockDao {
         return vo;
     }
 
+    /*
     // 주식 삽입
     @Override
     public void insertStock(StockVO stock) {
@@ -114,4 +115,5 @@ public class StockDaoImpl implements StockDao {
             e.printStackTrace();
         }
     }
+    */
 }
