@@ -50,7 +50,7 @@ public class StockDaoImpl implements StockDao {
 
     @Override
     public List<StockVO> getList() throws SQLException {
-        // ⚠️ 기존에는 SQL을 직접 문자열로 선언했으나, 상수 재사용으로 일관성 향상
+        //  기존에는 SQL을 직접 문자열로 선언했으나, 상수 재사용으로 일관성 향상
         PreparedStatement pstmt = conn.prepareStatement(STOCK_LIST);
         ResultSet rs = pstmt.executeQuery();
 
