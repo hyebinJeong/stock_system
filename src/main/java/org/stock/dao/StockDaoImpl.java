@@ -7,22 +7,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class StockDaoImpl implements StockDao {
+public class StockDaoImpl implements StockDao{
 
     Connection conn = JDBCUtil.getConnection();
 
-    // SQL 명령어 정리
-    // 상수로 명확히 선언하기 위해 final 사용 (다시는 변경되지 않음을 알리기)
-    // SQL 같은 변경되지 않아야 할 고정 문자열은 항상 private static final로 선언하는 것이 실무에서의 표준 관례
-    private static final String STOCK_INSERT = "INSERT INTO stocks (stock_name, ticker, price, holding_qty) VALUES (?, ?, ?, ?)";
-    private static final String STOCK_LIST = "SELECT * FROM stocks";
-    private static final String STOCK_GET = "SELECT * FROM stocks WHERE id = ?";
-    private static final String STOCK_UPDATE = "UPDATE stocks SET stock_name = ?, ticker = ?, price = ?, holding_qty = ? WHERE id = ?";
-    private static final String STOCK_DELETE = "DELETE FROM stocks WHERE id = ?";
-
+    //private String STOCK_LIST = "select * from stock_db";
+    private String STOCK_GET = "select * from stocks where ticker = ?";
+    private String STOCK_INSERT = "insert into stocks(stock_name, ticker, price, holding_qty) values(?,?,?,?)";
+    private String STOCK_UPDATE = "update stocks set stock_name  = ?, ticker = ?, price = ?, holding_qty = ? where id = ?";
+    private final String STOCK_DELETE = "DELETE FROM stocks WHERE ticker = ?";
 
     @Override
     public int create(StockVO stock) throws SQLException {
@@ -48,37 +42,16 @@ public class StockDaoImpl implements StockDao {
         return result;
     }
 
+    // 특정 주식 정보 조회
     @Override
-    public List<StockVO> getList() throws SQLException {
-        //  기존에는 SQL을 직접 문자열로 선언했으나, 상수 재사용으로 일관성 향상
-        PreparedStatement pstmt = conn.prepareStatement(STOCK_LIST);
-        ResultSet rs = pstmt.executeQuery();
+    public StockVO get(String ticker) throws SQLException{
+        StockVO stock = new StockVO();
+        // select * from stock_db where ticker = ? 쿼리에 주식 이름을 넣어 실행 준비
+        PreparedStatement stmt = conn.prepareStatement(STOCK_GET);
+        stmt.setString(1, ticker);
 
-        List<StockVO> list = new ArrayList<>();
-        while (rs.next()) {
-            StockVO stock = new StockVO();
-            stock.setId(rs.getInt("id"));
-            stock.setStock_name(rs.getString("stock_name"));
-            stock.setTicker(rs.getString("ticker"));
-            stock.setPrice(rs.getInt("price"));
-            stock.setHolding_qty(rs.getInt("holding_qty"));
-            list.add(stock);  // 한 줄씩 리스트에 추가
-        }
-
-        rs.close();
-        pstmt.close();
-        return list;
-    }
-
-
-    @Override
-    public StockVO get(int id) throws SQLException {
-        PreparedStatement pstmt = conn.prepareStatement(STOCK_GET);
-        pstmt.setInt(1, id);
-        ResultSet rs = pstmt.executeQuery();
-
-        StockVO stock = null;
-        if (rs.next()) {
+        ResultSet rs = stmt.executeQuery();
+        if(rs.next()){
             stock = new StockVO();
             stock.setId(rs.getInt("id"));
             stock.setStock_name(rs.getString("stock_name"));
@@ -86,31 +59,33 @@ public class StockDaoImpl implements StockDao {
             stock.setPrice(rs.getInt("price"));
             stock.setHolding_qty(rs.getInt("holding_qty"));
         }
-
-        rs.close();
-        pstmt.close();
+        stmt.close(); rs.close();
         return stock;
     }
 
+    // 주식 수정 메소드
     @Override
-    public int update(StockVO stock) throws SQLException {
-        PreparedStatement pstmt = conn.prepareStatement(STOCK_UPDATE);
-        pstmt.setString(1, stock.getStock_name());
-        pstmt.setString(2, stock.getTicker());
-        pstmt.setInt(3, stock.getPrice());
-        pstmt.setInt(4, stock.getHolding_qty());
-        pstmt.setInt(5, stock.getId());
-        int result = pstmt.executeUpdate();
-        pstmt.close();
+    public int update(StockVO stock) throws SQLException{
+        PreparedStatement stmt = conn.prepareStatement(STOCK_UPDATE);
+        stmt.setString(1, stock.getStock_name());
+        stmt.setString(2, stock.getTicker());
+        stmt.setInt(3, stock.getPrice());
+        stmt.setInt(4,stock.getHolding_qty());
+        stmt.setInt(5, stock.getId());
+
+        int result = stmt.executeUpdate();
+        stmt.close();
         return result;
     }
 
+
+    // 주식 삭제 메소드
     @Override
-    public int delete(int id) throws SQLException {
+    public int delete(String ticker) throws SQLException {
         PreparedStatement pstmt = conn.prepareStatement(STOCK_DELETE);
-        pstmt.setInt(1, id);
-        int result = pstmt.executeUpdate();
+        pstmt.setString(1, ticker);
+        int count = pstmt.executeUpdate();
         pstmt.close();
-        return result;
+        return count;
     }
 }
