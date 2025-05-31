@@ -31,7 +31,7 @@ public class StockMain {
           
             switch (choice) {
                 case 1 -> insert();
-                case 2 -> selectList();
+//                case 2 -> selectList();
                 case 3 -> selectOne();
                 case 4 -> update();
                 case 5 -> delete();
@@ -44,7 +44,27 @@ public class StockMain {
             }
         }
     }
-  
+
+    public static void insert() throws SQLException {
+        StockVO stock = new StockVO();
+
+        System.out.println("\n종목명, 티커, 현재가, 보유 수량을 순서대로 입력하시오.");
+        System.out.print("stockName >> ");
+        stock.setStockName(sc.next());
+        System.out.print("ticker >> ");
+        stock.setTicker(sc.next());
+        System.out.print("price >> ");
+        stock.setPrice(sc.nextInt());
+        System.out.print("holdingQty >> ");
+        stock.setHoldingQty(sc.nextInt());
+
+        int result = stockDao.create(stock);
+        if (result == 1) {
+            System.out.println("등록 성공!");
+        } else {
+            System.out.println("등록 실패...");
+        }
+    }
   
     // 특정 주식 조회
     public static void selectOne() throws SQLException {
@@ -130,12 +150,10 @@ public class StockMain {
   
  
 // prinVo 주석 (2)
-    /*
     private static void printVO(StockVO stock) {
         System.out.println("종목명: " + stock.getStockName()
                 + ", 티커: " + stock.getTicker()
                 + ", 가격: " + stock.getPrice()
                 + ", 보유 수량: " + stock.getHoldingQty());
     }
-    */
 }
