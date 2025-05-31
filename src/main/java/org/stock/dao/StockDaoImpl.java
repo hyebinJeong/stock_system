@@ -1,6 +1,7 @@
 package org.stock.dao;
 
 import org.stock.common.JDBCUtil;
+
 import org.stock.domain.StockVO;
 
 import java.sql.Connection;
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StockDaoImpl implements StockDao{
+public class StockDaoImpl implements StockDao {
 
     Connection conn = JDBCUtil.getConnection();
 
@@ -41,6 +42,28 @@ public class StockDaoImpl implements StockDao{
         // 앞에서 얻은 실행 결과(삽입된 행의 수)를 메서드 호출한 쪽으로 반환함
         return result;
     }
+  @Override
+public List<StockVO> getAllStocks() throws SQLException {
+    List<StockVO> list = new ArrayList<>();
+    String sql = "SELECT * FROM stocks";
+
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+    ResultSet rs = pstmt.executeQuery();
+
+    while (rs.next()) {
+        StockVO vo = new StockVO();
+        vo.setId(rs.getInt("id"));
+        vo.setStockName(rs.getString("stock_name"));
+        vo.setTicker(rs.getString("ticker"));
+        vo.setPrice(rs.getInt("price"));
+        vo.setHoldingQty(rs.getInt("holding_qty"));
+        list.add(vo);
+    }
+
+    rs.close();
+    pstmt.close();
+    return list;
+}
 
     // 특정 주식 정보 조회
     @Override

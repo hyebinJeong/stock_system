@@ -1,3 +1,4 @@
+
 CREATE DATABASE stock_db;
 USE stock_db;
 
@@ -13,3 +14,4 @@ CREATE TABLE stocks(
   price INT NOT NULL,
   holding_qty INT NOT NULL
 );
+

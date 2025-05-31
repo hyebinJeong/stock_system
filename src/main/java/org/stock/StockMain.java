@@ -31,7 +31,7 @@ public class StockMain {
           
             switch (choice) {
                 case 1 -> insert();
-//                case 2 -> selectList();
+                case 2 -> selectList(); //
                 case 3 -> selectOne();
                 case 4 -> update();
                 case 5 -> delete();
@@ -63,6 +63,14 @@ public class StockMain {
             System.out.println("등록 성공!");
         } else {
             System.out.println("등록 실패...");
+        }
+    }
+   //                          /\_/\
+   // 전체 주식 목록 조회 메서드    (=˃ᆺ˂=) 
+    public static void selectList() throws SQLException {
+        System.out.println("전체 주식 목록:");
+        for (StockVO stock : stockDao.getAllStocks()) {
+            printVO(stock);
         }
     }
   
@@ -155,5 +163,6 @@ public class StockMain {
                 + ", 티커: " + stock.getTicker()
                 + ", 가격: " + stock.getPrice()
                 + ", 보유 수량: " + stock.getHoldingQty());
+
     }
 }

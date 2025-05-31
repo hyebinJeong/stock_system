@@ -10,6 +10,7 @@ public interface StockDao {
     int create(StockVO stock) throws SQLException;
 
     // 주식 목록 조회
+    List<StockVO> getAllStocks() throws SQLException;
 //    List<StockVO> getList() throws SQLException;
 
     // 주식 정보 조회
@@ -21,3 +22,4 @@ public interface StockDao {
     // 주식 삭제
     int delete(String ticker) throws SQLException;
 }
+
