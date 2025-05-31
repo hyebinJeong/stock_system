@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class StockVO {
     private int id;
-    private String stock_name;
+    private String stockName;
     private String ticker;
     private int price;
-    private int holding_qty;
+    private int holdingQty;
 
 }

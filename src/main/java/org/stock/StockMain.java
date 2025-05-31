@@ -49,14 +49,14 @@ public class StockMain {
         StockVO stock = new StockVO();
 
         System.out.println("\n종목명, 티커, 현재가, 보유 수량을 순서대로 입력하시오.");
-        System.out.print("stock_name >> ");
-        stock.setStock_name(sc.next());
+        System.out.print("stockName >> ");
+        stock.setStockName(sc.next());
         System.out.print("ticker >> ");
         stock.setTicker(sc.next());
         System.out.print("price >> ");
         stock.setPrice(sc.nextInt());
-        System.out.print("holding_qty >> ");
-        stock.setHolding_qty(sc.nextInt());
+        System.out.print("holdingQty >> ");
+        stock.setHoldingQty(sc.nextInt());
 
         int result = stockDao.create(stock);
         if (result == 1) {
@@ -97,9 +97,9 @@ public class StockMain {
 
         sc.nextLine(); // 개행 제거
 
-        System.out.print("수정할 주식 이름 (" + stock.getStock_name() + "): ");
+        System.out.print("수정할 주식 이름 (" + stock.getStockName() + "): ");
         String name = sc.nextLine();
-        if (!name.isEmpty()) stock.setStock_name(name);
+        if (!name.isEmpty()) stock.setStockName(name);
 
         System.out.print("수정할 종목 코드 (" + stock.getTicker() + "): ");
         String newTicker = sc.nextLine();
@@ -109,9 +109,9 @@ public class StockMain {
         String priceStr = sc.nextLine();
         if (!priceStr.isEmpty()) stock.setPrice(Integer.parseInt(priceStr));
 
-        System.out.print("수정할 보유 수량 (" + stock.getHolding_qty() + "): ");
+        System.out.print("수정할 보유 수량 (" + stock.getHoldingQty() + "): ");
         String qtyStr = sc.nextLine();
-        if (!qtyStr.isEmpty()) stock.setHolding_qty(Integer.parseInt(qtyStr));
+        if (!qtyStr.isEmpty()) stock.setHoldingQty(Integer.parseInt(qtyStr));
 
         int result = stockDao.update(stock);
         if (result > 0) {
@@ -151,9 +151,9 @@ public class StockMain {
  
 // prinVo 주석 (2)
     private static void printVO(StockVO stock) {
-        System.out.println("종목명: " + stock.getStock_name()
+        System.out.println("종목명: " + stock.getStockName()
                 + ", 티커: " + stock.getTicker()
                 + ", 가격: " + stock.getPrice()
-                + ", 보유 수량: " + stock.getHolding_qty());
+                + ", 보유 수량: " + stock.getHoldingQty());
     }
 }

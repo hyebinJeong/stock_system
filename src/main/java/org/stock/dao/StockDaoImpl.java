@@ -25,10 +25,10 @@ public class StockDaoImpl implements StockDao{
         PreparedStatement pstmt = conn.prepareStatement(STOCK_INSERT);
 
         // ?자리에 값 세팅
-        pstmt.setString(1, stock.getStock_name());
+        pstmt.setString(1, stock.getStockName());
         pstmt.setString(2, stock.getTicker());
         pstmt.setInt(3, stock.getPrice());
-        pstmt.setInt(4, stock.getHolding_qty());
+        pstmt.setInt(4, stock.getHoldingQty());
         // DB에 SQL문을 실행
         // executeUpdate()는 INSERT, UPDATE, DELETE 같은 데이터 변경 작업에서 사용
         int result = pstmt.executeUpdate();
@@ -54,10 +54,10 @@ public class StockDaoImpl implements StockDao{
         if(rs.next()){
             stock = new StockVO();
             stock.setId(rs.getInt("id"));
-            stock.setStock_name(rs.getString("stock_name"));
+            stock.setStockName(rs.getString("stock_name"));
             stock.setTicker(rs.getString("ticker"));
             stock.setPrice(rs.getInt("price"));
-            stock.setHolding_qty(rs.getInt("holding_qty"));
+            stock.setHoldingQty(rs.getInt("holding_qty"));
         }
         stmt.close(); rs.close();
         return stock;
@@ -67,10 +67,10 @@ public class StockDaoImpl implements StockDao{
     @Override
     public int update(StockVO stock) throws SQLException{
         PreparedStatement stmt = conn.prepareStatement(STOCK_UPDATE);
-        stmt.setString(1, stock.getStock_name());
+        stmt.setString(1, stock.getStockName());
         stmt.setString(2, stock.getTicker());
         stmt.setInt(3, stock.getPrice());
-        stmt.setInt(4,stock.getHolding_qty());
+        stmt.setInt(4,stock.getHoldingQty());
         stmt.setInt(5, stock.getId());
 
         int result = stmt.executeUpdate();
