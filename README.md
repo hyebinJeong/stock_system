@@ -18,6 +18,7 @@
 
 ## 🗂️ 프로젝트 구조
 
+```
 ├── /src
 │ ├── /dao # StockDao, StockDaoImpl
 │ ├── /domain # StockVO
@@ -25,6 +26,7 @@
 │ └── StockMain.java
 ├── application.properties
 ├── build.gradle
+```
 
 ---
 
