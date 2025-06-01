@@ -19,13 +19,21 @@
 ## 🗂️ 프로젝트 구조
 
 ```
-├── /src
-│ ├── /dao # StockDao, StockDaoImpl
-│ ├── /domain # StockVO
-│ ├── /util # JDBCUtil
-│ └── StockMain.java
-├── application.properties
-├── build.gradle
+📁 src
+└── main
+├── java
+│ └── org.stock
+│ ├── common # JDBCUtil (DB 연결 공통 유틸)
+│ │ └── JDBCUtil.java
+│ ├── dao # DAO 인터페이스 및 구현체
+│ │ ├── StockDao.java
+│ │ └── StockDaoImpl.java
+│ ├── domain # VO 클래스
+│ │ └── StockVO.java
+│ └── StockMain.java # 콘솔 프로그램 진입점
+└── resources
+└── application.properties # DB 연결 설정
+📄 stock_db.sql # 테이블 생성 SQL
 ```
 
 ---
