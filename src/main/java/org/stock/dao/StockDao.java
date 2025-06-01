@@ -1,8 +1,8 @@
 package org.stock.dao;
 
 import org.stock.domain.StockVO;
-
 import java.sql.SQLException;
+import java.util.List;
 
 public interface StockDao {
 
