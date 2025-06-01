@@ -88,7 +88,7 @@ CREATE TABLE stocks (
   price INT NOT NULL,
   holding_qty INT NOT NULL
 );
-
+```
 ---
 
 ## 🛠 협업 및 Git 관리 방식
