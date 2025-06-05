@@ -21,19 +21,21 @@
 ```
 📁 src
 └── main
-├── java
-│ └── org.stock
-│ ├── common # JDBCUtil (DB 연결 공통 유틸)
-│ │ └── JDBCUtil.java
-│ ├── dao # DAO 인터페이스 및 구현체
-│ │ ├── StockDao.java
-│ │ └── StockDaoImpl.java
-│ ├── domain # VO 클래스
-│ │ └── StockVO.java
-│ └── StockMain.java # 콘솔 프로그램 진입점
-└── resources
-└── application.properties # DB 연결 설정
-📄 stock_db.sql # 테이블 생성 SQL
+    ├── java
+    │   └── org.stock
+    │       ├── common          # JDBCUtil (DB 연결 공통 유틸)
+    │       │   └── JDBCUtil.java
+    │       ├── dao             # DAO 인터페이스 및 구현체
+    │       │   ├── StockDao.java
+    │       │   └── StockDaoImpl.java
+    │       ├── domain          # VO 클래스
+    │       │   └── StockVO.java
+    │       └── StockMain.java  # 콘솔 프로그램 진입점
+    └── resources
+        └── application.properties  # ✅ DB 연결 설정 위치
+
+📄 stock_db.sql  # 테이블 생성 SQL (최상위 루트 또는 resources 아래로 옮길 수도 있음)
+
 ```
 
 ---
@@ -71,7 +73,7 @@
 ### 2025.05.29 (목)
 - 전체 코드 리팩토링
 - 최종 테스트
-- Pull Request 제출
+- Pull Request
 
 ### 2025.05.30 (금)
 - 최종 Merge 완료
