@@ -32,9 +32,9 @@
     │       │   └── StockVO.java
     │       └── StockMain.java  # 콘솔 프로그램 진입점
     └── resources
-        └── application.properties  # ✅ DB 연결 설정 위치
+        └── application.properties  # DB 연결 설정 위치
 
-📄 stock_db.sql  # 테이블 생성 SQL (최상위 루트 또는 resources 아래로 옮길 수도 있음)
+📄 stock_db.sql  # 테이블 생성 SQL
 
 ```
 
